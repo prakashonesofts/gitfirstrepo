@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class MyController {
     @GetMapping("/employeedetails")
-    public List<Employee> getAll() {
+    public List<String> getAll() {
         Employee e1 = new Employee();
         e1.name="Prakash";
         e1.age=27;
@@ -24,7 +25,7 @@ public class MyController {
         employee.add(e1);
         employee.add(e2);
 
-        return employee;
+        return employee.stream().map(e -> e.name).collect(Collectors.toList());
     }
 
 }
